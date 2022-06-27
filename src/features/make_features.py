@@ -12,7 +12,11 @@ def make_features():
     analizar y determinar las variables explicativas del modelo.
 
     """
-    raise NotImplementedError("Implementar esta función")
+    
+    
+    
+    
+    #raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":

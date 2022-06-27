@@ -3,6 +3,8 @@ Módulo de ingestión de datos.
 -------------------------------------------------------------------------------
 
 """
+import os
+import urllib.request
 
 
 def ingest_data():
@@ -13,10 +15,24 @@ def ingest_data():
     descarga debe realizarse usando únicamente funciones de Python.
 
     """
-    raise NotImplementedError("Implementar esta función")
+    for num in range(1995,2022):
+        if num in range(2016,2018):
+            url = 'https://github.com/jdvelasq/datalabs/blob/master/datasets/precio_bolsa_nacional/xls/{}.xls?raw=true'.format(num)
+            filename, headers = urllib.request.urlretrieve(url, filename='data_lake/landing/{}.xls'.format(num))
+
+        else:
+            url = 'https://github.com/jdvelasq/datalabs/blob/master/datasets/precio_bolsa_nacional/xls/{}.xlsx?raw=true'.format(num)
+            urllib.request.urlretrieve(url, filename='data_lake/landing/{}.xlsx'.format(num))
+
+
+
+
+   # raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":
+    
+    ingest_data()
     import doctest
 
     doctest.testmod()

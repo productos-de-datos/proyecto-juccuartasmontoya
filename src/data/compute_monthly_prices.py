@@ -12,10 +12,21 @@ def compute_monthly_prices():
 
 
     """
-    raise NotImplementedError("Implementar esta función")
+    #raise NotImplementedError("Implementar esta función")
 
-
+    precios_horarios = pd.read_csv('data_lake/cleansed/precios-horarios.csv', sep = ',')
+    precios_horarios[['ano', 'mes', 'dia']] = precios_horarios['fecha'].str.split('-', expand=True)
+    precios_horarios['fecha2'] = precios_horarios['ano'] + '-' + precios_horarios['mes'] + '-01'
+    precios_horarios = precios_horarios.drop(['fecha','ano','mes','dia','hora'], axis=1)
+    precios_mensuales = precios_horarios.groupby(['fecha2'])['precio'].mean()
+    precios_mensuales = precios_mensuales.reset_index()
+    precios_mensuales = precios_mensuales.rename(columns={'fecha2':'fecha'})
+    precios_mensuales.to_csv('data_lake/business/precios-mensuales.csv',index = False,  encoding='utf-8')
+    
+    
 if __name__ == "__main__":
     import doctest
+    import pandas as pd
 
+    compute_monthly_prices()
     doctest.testmod()
