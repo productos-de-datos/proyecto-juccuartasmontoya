@@ -1,4 +1,4 @@
-
+import pandas as pd
 
 
 def transform_data():
@@ -45,10 +45,11 @@ def transform_data():
 
 if __name__ == "__main__":
     
-    
-    import doctest
-    import pandas as pd
-
     transform_data()
+
+    import doctest
+    
+
+    
     
     doctest.testmod()
