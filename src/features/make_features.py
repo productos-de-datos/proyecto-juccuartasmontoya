@@ -1,3 +1,5 @@
+import pandas as pd
+
 def make_features():
     """Prepara datos para pronóstico.
 
@@ -13,13 +15,20 @@ def make_features():
 
     """
     
-    
-    
+    precios_diarios = pd.read_csv('data_lake/business/precios-diarios.csv', sep = ',')
+    precios_diarios['Variable_dependiente'] = 0
+    for i in range(9393,9417):
+        precios_diarios.iloc[i,2] = precios_diarios.iloc[i,1]
+        precios_diarios.iloc[i,1] = 0
+
+    precios_diarios.to_csv('data_lake/business/features/precios_diarios.csv',index = False,  encoding='utf-8')
     
     #raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":
     import doctest
+
+    make_features()
 
     doctest.testmod()
