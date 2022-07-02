@@ -1,3 +1,11 @@
+'''
+En este modeulo se realiza la creación de los directorios
+@author: Juan Camilo Cuartas
+'''
+
+import doctest
+import os
+
 def create_data_lake():
     """Cree el data lake con sus capas.
 
@@ -7,22 +15,18 @@ def create_data_lake():
     ```
     .
     |
-    \___ data_lake/
+    ___ data_lake/
          |___ landing/
          |___ raw/
          |___ cleansed/
-         \___ business/
+         ___ business/
               |___ reports/
               |    |___ figures/
               |___ features/
               |___ forecasts/
 
     ```
-
-    
     """
-
-    
 
     os.makedirs('data_lake/landing')
     os.makedirs('data_lake/raw')
@@ -33,10 +37,7 @@ def create_data_lake():
 
     #raise NotImplementedError("Implementar esta función")
 
-if __name__ == "__main__":    
-    
-    import doctest
-    import os
+if __name__ == "__main__":
 
     doctest.testmod()
     create_data_lake()
