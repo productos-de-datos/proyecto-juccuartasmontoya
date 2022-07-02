@@ -28,8 +28,9 @@ def create_data_lake():
 
     ```
     """
+    if os.path.isdir('data_lake'):
+        shutil.rmtree('data_lake')
 
-    shutil.rmtree('data_lake')
     os.makedirs('data_lake/landing')
     os.makedirs('data_lake/raw')
     os.makedirs('data_lake/cleansed')
