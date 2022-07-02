@@ -29,7 +29,18 @@ def compute_daily_prices():
 
     #raise NotImplementedError("Implementar esta función")
 
+def test_values_prices():
+    precios = pd.read_csv('data_lake/business/precios-diarios.csv').head()
+
+    assert precios['precio'].head().to_list() == [
+        1.3507083333333334,
+        4.924333333333333,
+        1.2695,
+        0.9530833333333332,
+        4.305916666666667
+    ]
 
 if __name__ == "__main__":
     compute_daily_prices()
+    test_values_prices()
     doctest.testmod()
