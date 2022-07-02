@@ -5,6 +5,7 @@ En este modeulo se realiza la creación de los directorios
 
 import doctest
 import os
+import shutil
 
 def create_data_lake():
     """Cree el data lake con sus capas.
@@ -28,6 +29,7 @@ def create_data_lake():
     ```
     """
 
+    shutil.rmtree('data_lake')
     os.makedirs('data_lake/landing')
     os.makedirs('data_lake/raw')
     os.makedirs('data_lake/cleansed')
