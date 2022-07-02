@@ -1,3 +1,11 @@
+'''
+Módulo de transformación de datos.
+Mediante este genera el archivo precios-mensuales.csv
+@author: Juan Camilo Cuartas
+'''
+import doctest
+import pandas as pd
+
 def compute_monthly_prices():
     """Compute los precios promedios mensuales.
 
@@ -12,8 +20,6 @@ def compute_monthly_prices():
 
 
     """
-    #raise NotImplementedError("Implementar esta función")
-
     precios_horarios = pd.read_csv('data_lake/cleansed/precios-horarios.csv', sep = ',')
     precios_horarios[['ano', 'mes', 'dia']] = precios_horarios['fecha'].str.split('-', expand=True)
     precios_horarios['fecha2'] = precios_horarios['ano'] + '-' + precios_horarios['mes'] + '-01'
@@ -21,12 +27,12 @@ def compute_monthly_prices():
     precios_mensuales = precios_horarios.groupby(['fecha2'])['precio'].mean()
     precios_mensuales = precios_mensuales.reset_index()
     precios_mensuales = precios_mensuales.rename(columns={'fecha2':'fecha'})
-    precios_mensuales.to_csv('data_lake/business/precios-mensuales.csv',index = False,  encoding='utf-8')
-    
-    
-if __name__ == "__main__":
-    import doctest
-    import pandas as pd
+    precios_mensuales.to_csv('data_lake/business/precios-mensuales.csv',\
+        index = False,  encoding='utf-8')
 
+    #raise NotImplementedError("Implementar esta función")
+
+
+if __name__ == "__main__":
     compute_monthly_prices()
     doctest.testmod()

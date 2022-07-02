@@ -1,3 +1,9 @@
+'''
+Módulo de transformación de datos.
+Mediante este genera el archivo precios-diarios.csv
+@author: Juan Camilo Cuartas
+'''
+import doctest
 import pandas as pd
 
 def compute_daily_prices():
@@ -14,20 +20,16 @@ def compute_daily_prices():
 
 
     """
-    
-    precios_horarios = pd.read_csv('data_lake/cleansed/precios-horarios.csv', sep = ',')
-    precios_diarios = precios_horarios.groupby(['fecha'])['precio'].mean() 
+    precios_horarios = pd.read_csv('data_lake/cleansed/precios-horarios.csv',\
+         sep = ',')
+    precios_diarios = precios_horarios.groupby(['fecha'])['precio'].mean()
     precios_diarios = precios_diarios.reset_index()
-    precios_diarios.to_csv('data_lake/business/precios-diarios.csv',index = False,  encoding='utf-8')
-    
-    
+    precios_diarios.to_csv('data_lake/business/precios-diarios.csv',\
+        index = False,  encoding='utf-8')
+
     #raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":
-    
-    fechas = compute_daily_prices()
-
-
-    import doctest
+    compute_daily_prices()
     doctest.testmod()

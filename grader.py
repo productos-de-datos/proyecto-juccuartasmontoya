@@ -1,3 +1,7 @@
+'''
+Módulo con los test que validan la correcta ejecución de los ejercicios
+@author: Juan Camilo Cuartas
+'''
 #
 # Evaluador
 # ---------------------------------------------------------------------------------------
@@ -160,5 +164,3 @@ test = {
 }[sys.argv[1]]
 
 test()
-
-#Se debe instalar openpyxl y wget, xlrd

@@ -1,6 +1,7 @@
 '''
 Módulo de transformación de datos.
-Mediante este módulo se transforman los archivos en formato XLSX a formato CSV
+Mediante este módulo concatena todos los archivos CSV
+y genera el archivo de precios horarios
 @author: Juan Camilo Cuartas
 '''
 import doctest
