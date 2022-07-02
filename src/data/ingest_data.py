@@ -14,15 +14,14 @@ def ingest_data():
     descarga debe realizarse usando únicamente funciones de Python.
 
     """
+    ruta = 'https://github.com/jdvelasq/datalabs/blob/master/datasets/precio_bolsa_nacional/xls/'
     for num in range(1995,2022):
         if num in range(2016,2018):
-            url = 'https://github.com/jdvelasq/datalabs/blob/master/datasets/ \
-                precio_bolsa_nacional/xls/' + str(num) + '.xls?raw=true'
+            url = ruta + str(num) + '.xls?raw=true'
             urllib.request.urlretrieve(url, filename='data_lake/landing/' + str(num) + '.xls')
 
         else:
-            url = 'https://github.com/jdvelasq/datalabs/blob/master/datasets/ \
-                precio_bolsa_nacional/xls/' + str(num) + '.xlsx?raw=true'
+            url = ruta + str(num) + '.xlsx?raw=true'
             urllib.request.urlretrieve(url, filename='data_lake/landing/' + str(num) + '.xlsx')
 
 
