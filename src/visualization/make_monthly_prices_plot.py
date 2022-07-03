@@ -19,8 +19,8 @@ def make_monthly_prices_plot():
     """
 
     precios_mensuales = pd.read_csv('data_lake/business/precios-mensuales.csv', sep = ',')
-
-
+    precios_mensuales['fecha'] = pd.to_datetime(precios_mensuales['fecha'],\
+         format="%Y-%m-%d %H:%M:%S")
     plt.plot(precios_mensuales['fecha'], precios_mensuales['precio'])
     plt.xlabel("fecha")
     plt.ylabel("Precio COP/kWh")

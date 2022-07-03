@@ -20,10 +20,8 @@ def make_daily_prices_plot():
 
     precios_diarios = pd.read_csv('data_lake/business/precios-diarios.csv', \
         sep = ',')
-
-    variable_x = precios_diarios['fecha']
-    variable_y = precios_diarios['precio']
-    plt.plot(variable_x, variable_y)
+    precios_diarios['fecha'] = pd.to_datetime(precios_diarios['fecha'], format="%Y-%m-%d %H:%M:%S")
+    plt.plot(precios_diarios['fecha'], precios_diarios['precio'])
     plt.xlabel("fecha")
     plt.ylabel("Precio COP/kWh")
     plt.title("Evolución precio promedio diario")

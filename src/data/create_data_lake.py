@@ -31,12 +31,12 @@ def create_data_lake():
     if os.path.isdir('data_lake'):
         shutil.rmtree('data_lake')
 
-    os.makedirs('data_lake/landing')
-    os.makedirs('data_lake/raw')
-    os.makedirs('data_lake/cleansed')
-    os.makedirs('data_lake/business/reports/figures')
-    os.makedirs('data_lake/business/features')
-    os.makedirs('data_lake/business/forecasts')
+    rutas_directorios = ['data_lake/landing','data_lake/raw','data_lake/cleansed',\
+        'data_lake/business/reports/figures','data_lake/business/features',\
+        'data_lake/business/forecasts']
+
+    for ruta in rutas_directorios:
+        os.makedirs(ruta)
 
     #raise NotImplementedError("Implementar esta función")
 

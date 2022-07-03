@@ -30,6 +30,12 @@ def compute_daily_prices():
     #raise NotImplementedError("Implementar esta función")
 
 def test_values_prices():
+    """Funciones de test
+
+    1. Test de validación de resultado de precios
+    2. Test de validación de número de registros
+
+    """
     precios = pd.read_csv('data_lake/business/precios-diarios.csv')
     primeros_cinco_precios = precios.head()
     assert primeros_cinco_precios['precio'].head().to_list() == [
