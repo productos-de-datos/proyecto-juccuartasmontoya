@@ -1,3 +1,11 @@
+'''
+Módulo de transformación de datos.
+Mediante este genera el archivo precios-diarios.csv
+@author: Juan Camilo Cuartas
+'''
+import doctest
+import pandas as pd
+
 def compute_daily_prices():
     """Compute los precios promedios diarios.
 
@@ -12,10 +20,37 @@ def compute_daily_prices():
 
 
     """
-    raise NotImplementedError("Implementar esta función")
+    precios_horarios = pd.read_csv('data_lake/cleansed/precios-horarios.csv',\
+         sep = ',')
+    precios_diarios = precios_horarios.groupby(['fecha'])['precio'].mean()
+    precios_diarios = precios_diarios.reset_index()
+    precios_diarios.to_csv('data_lake/business/precios-diarios.csv',\
+        index = False,  encoding='utf-8')
+
+    #raise NotImplementedError("Implementar esta función")
+
+def test_values_prices():
+    """Funciones de test
+
+    1. Test de validación de resultado de precios
+    2. Test de validación de número de registros
+
+    """
+    precios = pd.read_csv('data_lake/business/precios-diarios.csv')
+    primeros_cinco_precios = precios.head()
+    assert primeros_cinco_precios['precio'].head().to_list() == [
+        1.3507083333333334,
+        4.924333333333333,
+        1.2695,
+        0.9530833333333332,
+        4.305916666666667
+    ]
+
+    numero_registros_precio = len(precios['fecha'])
+    assert numero_registros_precio == 9417
 
 
 if __name__ == "__main__":
-    import doctest
-
+    compute_daily_prices()
+    test_values_prices()
     doctest.testmod()
